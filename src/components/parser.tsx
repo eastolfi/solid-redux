@@ -1,16 +1,15 @@
-import { Component } from "solid-js";
-import { useStore } from "../context/store.context";
+import { Component } from 'solid-js';
 
-import slice, {
-    CounterState,
+import {
     decrease,
     decreaseBy,
     increase,
     increaseBy,
-} from "./parser.state";
+} from './parser.state';
+import { useStore } from '../context/store.context';
 
 const Parser: Component = () => {
-    const { store, dispatch, actions } = useStore();
+    const { store, dispatch/*, actions*/ } = useStore();
 
     return (
         <div
@@ -22,11 +21,11 @@ const Parser: Component = () => {
             }}
         >
             <button onClick={(e) => dispatch(decreaseBy(2))}>--</button>
-            <button onClick={(e) => actions.decrease()}>-</button>
+            <button onClick={(e) => dispatch(decrease())}>-</button>
 
             <p>{store.counter.count}</p>
 
-            <button onClick={(e) => actions.increase()}>+</button>
+            <button onClick={(e) => dispatch(increase())}>+</button>
             <button onClick={(e) => dispatch(increaseBy(2))}>++</button>
         </div>
     );

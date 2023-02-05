@@ -2,10 +2,9 @@ import { createContext, JSXElement, useContext } from 'solid-js';
 import { Dispatch } from 'redux';
 
 import useRedux from '../store/useRedux';
-import reduxStore, { AppState, actions2 as actions, StoreActions } from '../store/store';
-import { ParserActions } from '../components/parser.state';
+import reduxStore, { AppState } from '../store/store';
 
-type StoreContext = { store: AppState, dispatch: Dispatch, actions: StoreActions };
+type StoreContext = { store: AppState, dispatch: Dispatch/*, actions: StoreActions*/ };
 
 export const StoreContext = createContext<StoreContext>();
 
@@ -23,7 +22,7 @@ const StoreContextProvider = (props: { children: JSXElement }) => {
     const [ store, dispatch ] = useRedux<AppState>(reduxStore);
 
     const value: StoreContext = {
-        store, dispatch, actions
+        store, dispatch//, actions
     }
 
     return (
